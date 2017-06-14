@@ -10,3 +10,9 @@ export function removeRecipe(recipe){
         payload: recipe,
     }
 }
+export function addRecipeIngredient(id){
+    return {
+        type:'ADD_RECIPE_INGREDIENT',
+        payload: id
+    }
+}

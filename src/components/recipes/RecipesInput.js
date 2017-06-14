@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { addRecipe } from '../../actions/recipes'
-import {AddIngredients} from '../ingredients/AddIngredients'
+import { AddIngredients } from '../ingredients/AddIngredients'
 
 
 export class RecipesInput extends Component {
@@ -14,8 +14,10 @@ export class RecipesInput extends Component {
             calories: 0,
         }
     }
-    handleOnSubmit = () => {
-        this.props.addRecipe(this.state)
+    handleOnSubmit = (event) => {
+        event.preventDefault()
+        let recipe = Object.assign({}, this.state, {ingredientIds: this.props.selectedIngredients})
+        this.props.addRecipe(recipe)
     }
     handleOnChange = (e,field) => {
         if (field === "name"){
@@ -55,4 +57,8 @@ const mapDispatchToProps = (dispatch) => {
     }, dispatch)
 }
 
-export const ConnectedRecipesInput = connect(null, mapDispatchToProps)(RecipesInput)
+function mapStateToProps(state){
+    return { selectedIngredients: state.recipeForm.ingredientIds }
+}
+
+export const ConnectedRecipesInput = connect(mapStateToProps, mapDispatchToProps)(RecipesInput)

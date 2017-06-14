@@ -9,3 +9,12 @@ export default function ingredients(state = [], action){
       return state;
   }
 }
+
+export function selectedIngredients() {
+    
+}
+export function unselectedIngredients(allIngredients, selectedIngredientIds){
+      return allIngredients.filter(function(ingredient){
+      return selectedIngredientIds.includes(ingredient.id)
+  })
+}
