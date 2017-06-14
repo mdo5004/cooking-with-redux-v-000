@@ -1,6 +1,8 @@
 import uuidV4  from 'uuid/v4';
 
-export default function ingredients(state = [], action){
+let initialState = [{name:"mushrooms", calories:200, id:1 }, {name:"Ground beef", calories: 200, id:2}]
+
+export default function ingredients(state = initialState, action){
     switch (action.type) {
     case 'CREATE_INGREDIENT':
       let ingredient = Object.assign({}, action.payload, {id: uuidV4()})

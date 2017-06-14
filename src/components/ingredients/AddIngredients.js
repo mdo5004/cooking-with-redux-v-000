@@ -6,14 +6,14 @@ export class AddIngredients extends Component {
 
     render(){
         
-        let addIngredients = this.props.unselectedIngredients &&  this.props.unselectedIngredients.map((ingredient) => {
+        let addIngredients = this.props.unselectedIngredients.map((ingredient) => {
             console.log("++++++++++Ingredient+++++++++++")
             console.log(ingredient.name)
             return <ConnectedAddIngredient {...ingredient} />
         })
         
         
-        let ingredients = this.props.selectedIngredients && this.props.selectedIngredients.map((ingredient) => {
+        let ingredients = this.props.selectedIngredients.map((ingredient) => {
             return <li> {ingredient.name} </li>
         })
 
@@ -33,14 +33,21 @@ export class AddIngredients extends Component {
 }
 
 function mapStateToProps(state){
-//  let selectedIngredients = state.recipeForm.ingredientIds.map(function(ingredientId){
-//    
-//  })
-//  let unselectedIngredients = state.ingredients.filter( ingredient => {
-//      
-//  })
-  return {ingredients: state.ingredients,
-         recipeForm: state.recipeForm,
+    let ingredients = state.ingredients;
+    let ingredientIds = state.recipeForm.ingredientIds;
+    
+  let selectedIngredients = ingredientIds.map(function(ingredientId){
+        return ingredients.find(function(ingredient){
+            return ingredient.id === ingredientId
+        })
+  })
+  let unselectedIngredients = state.ingredients.filter( ingredient => {
+      return ingredients.filter(function(ingredient){
+          return ingredientIds.includes(ingredient.id)
+      })
+  })
+  return {unselectedIngredients: unselectedIngredients,
+         selectedIngredients: selectedIngredients,
          }
 }
 export const ConnectedAddIngredients = connect(mapStateToProps)(AddIngredients)
