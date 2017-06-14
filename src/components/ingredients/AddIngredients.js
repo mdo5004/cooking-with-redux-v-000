@@ -5,8 +5,10 @@ import { ConnectedAddIngredient } from './AddIngredient';
 export class AddIngredients extends Component {
 
     render(){
-
+        
         let addIngredients = this.props.unselectedIngredients &&  this.props.unselectedIngredients.map((ingredient) => {
+            console.log("++++++++++Ingredient+++++++++++")
+            console.log(ingredient.name)
             return <ConnectedAddIngredient {...ingredient} />
         })
         
@@ -31,14 +33,14 @@ export class AddIngredients extends Component {
 }
 
 function mapStateToProps(state){
-  let selectedIngredients = state.recipeForm.ingredientIds.map(function(ingredientId){
-    
-  })
-  let unselectedIngredients = state.ingredients.filter( ingredient => {
-      
-  })
-  return {ingredients: state.ingredients || [],
-    selectedIngredients: selectedIngredients || [],
-    unselectedIngredients: unselectedIngredients || []}
+//  let selectedIngredients = state.recipeForm.ingredientIds.map(function(ingredientId){
+//    
+//  })
+//  let unselectedIngredients = state.ingredients.filter( ingredient => {
+//      
+//  })
+  return {ingredients: state.ingredients,
+         recipeForm: state.recipeForm,
+         }
 }
 export const ConnectedAddIngredients = connect(mapStateToProps)(AddIngredients)

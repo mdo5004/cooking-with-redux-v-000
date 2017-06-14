@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addRecipe } from '../../actions/recipes'
-import { AddIngredients } from '../ingredients/AddIngredients'
+import { ConnectedAddIngredients } from '../ingredients/AddIngredients'
 
 
 export class RecipesInput extends Component {
@@ -42,7 +42,7 @@ export class RecipesInput extends Component {
                     <label>Calories
                         <input type='text' onChange={ event => this.handleOnChange(event,'calories')} value={this.state.calories} placeholder="0"></input>
                     </label>
-                    <AddIngredients />
+                    <ConnectedAddIngredients />
                     <button type="submit">Create Recipe</button>
                 </form>
             </div>
