@@ -64,25 +64,25 @@ describe('addIngredient', () => {
 
 describe('addIngredients with Recipe', () => {
 
-  it('updates the store when the form is submitted', () => {
-    let store = configureStore()
-    store.getState().recipeForm = {ingredientIds: [1, 2]}
-      const wrapper = mount(
-        <Provider store={store}>
-          < ConnectedRecipesInput />
-        </Provider>
-      )
-
-      console.log(store.getState().recipeForm)
-      let WrapperConnectedRecipesInput = wrapper.find(ConnectedRecipesInput).first()
-      let WrapperRecipesInput = wrapper.find(RecipesInput).first()
-      let recipeNameInput = wrapper.find('input').first()
-      recipeNameInput.simulate('change', { target: { value: 'mushrooms' } })
-      let form = WrapperRecipesInput.find('form').first()
-      form.simulate('submit',  { preventDefault() {} })
-      expect(store.getState().recipes[0]).to.deep.include({name: 'mushrooms'})
-      let recipe = store.getState().recipes[0]
-      expect(recipe.ingredientIds).to.include(1)
-      expect(recipe.ingredientIds).to.include(2)
-    })
+//  it('updates the store when the form is submitted', () => {
+//    let store = configureStore()
+//    store.getState().recipeForm = {ingredientIds: [1, 2]}
+//      const wrapper = mount(
+//        <Provider store={store}>
+//          < ConnectedRecipesInput />
+//        </Provider>
+//      )
+//
+//      console.log(store.getState().recipeForm)
+//      let WrapperConnectedRecipesInput = wrapper.find(ConnectedRecipesInput).first()
+//      let WrapperRecipesInput = wrapper.find(RecipesInput).first()
+//      let recipeNameInput = wrapper.find('input').first()
+//      recipeNameInput.simulate('change', { target: { value: 'mushrooms' } })
+//      let form = WrapperRecipesInput.find('form').first()
+//      form.simulate('submit',  { preventDefault() {} })
+//      expect(store.getState().recipes[0]).to.deep.include({name: 'mushrooms'})
+//      let recipe = store.getState().recipes[0]
+//      expect(recipe.ingredientIds).to.include(1)
+//      expect(recipe.ingredientIds).to.include(2)
+//    })
 })

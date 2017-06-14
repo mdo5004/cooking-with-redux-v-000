@@ -14,7 +14,7 @@ export class AddIngredients extends Component {
         
         
         let ingredients = this.props.selectedIngredients.map((ingredient) => {
-            return <li> {ingredient.name} </li>
+            return <li > {ingredient.name} </li>
         })
 
         return(
@@ -35,7 +35,8 @@ export class AddIngredients extends Component {
 function mapStateToProps(state){
     let ingredients = state.ingredients;
     let ingredientIds = state.recipeForm.ingredientIds;
-    
+    console.log("Ingredients = " + ingredients)
+    console.log("IngredientIds = " + ingredientIds)
   let selectedIngredients = ingredientIds.map(function(ingredientId){
         return ingredients.find(function(ingredient){
             return ingredient.id === ingredientId

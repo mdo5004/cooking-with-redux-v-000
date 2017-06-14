@@ -5,7 +5,10 @@
 // uuidV4.isUUID(myUUID);  // true 
 import uuidV4  from 'uuid/v4';
 
-export default function recipe(state = [], action){
+let initialState = [
+    {name:"spaghetti and meatballs", calories:300, ingredientIds:[1, 2] }]
+initialState=[]
+export default function recipe(state = initialState, action){
     switch (action.type){
         case "ADD_RECIPE":
             return [].concat(state, Object.assign({},action.payload,{id: uuidV4()}));

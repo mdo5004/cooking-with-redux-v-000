@@ -14,10 +14,12 @@ export class RecipesInput extends Component {
             calories: 0,
         }
     }
-    handleOnSubmit = (event) => {
+    handleOnSubmit(event) {
+        console.log(this.props.addRecipe)
         event.preventDefault()
-        let recipe = Object.assign({}, this.state, {ingredientIds: this.props.selectedIngredients})
-        this.props.addRecipe(recipe)
+//        let recipe = Object.assign({}, this.state, {ingredientIds: this.props.selectedIngredients})
+        debugger
+        //        this.props.addRecipe(recipe)
     }
     handleOnChange = (e,field) => {
         if (field === "name"){
@@ -35,7 +37,7 @@ export class RecipesInput extends Component {
     render(){
         return(
             <div>
-                <form onSubmit={this.handleOnSubmit}>
+                <form onSubmit={this.handleOnSubmit.bind(this)}>
                     <label>Recipe
                         <input type='text' onChange={ event => this.handleOnChange(event,'name')} value={this.state.name} placeholder="Spaghetti and Meatballs"></input>
                     </label>
@@ -50,15 +52,11 @@ export class RecipesInput extends Component {
     }
 }
 
-
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        addRecipe: addRecipe
-    }, dispatch)
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({addRecipe: addRecipe}, dispatch)
 }
 
 function mapStateToProps(state){
-    return { selectedIngredients: state.recipeForm.ingredientIds }
+  return { selectedIngredients: state.recipeForm.ingredientIds }
 }
-
 export const ConnectedRecipesInput = connect(mapStateToProps, mapDispatchToProps)(RecipesInput)
